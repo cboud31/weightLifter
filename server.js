@@ -14,6 +14,9 @@ server.use(bodyParser.json());
 server.get('/', (req, res) =>
   res.send({ msg: `Welcome to the weightLifter API!` })
 );
+server.use('/api/users', require('./routes/users'));
+server.use('/api/routines', require('./routes/routines'));
+server.use('/api/exercises', require('./routes/exercises'));
 
 // Bring in the DB connection.
 const { client } = require('./db');
