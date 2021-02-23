@@ -1,5 +1,5 @@
 const exercisesRouter = require('express').Router();
-// const { createExercise } = require('../db/exercises');
+const { createExercise } = require('../db/exercises');
 
 //@route    GET /api/exercises/
 //@descr    Get all routines in the database.
