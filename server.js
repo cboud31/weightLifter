@@ -6,6 +6,10 @@ const server = express();
 const dotenv = require('dotenv');
 dotenv.config({ path: './config/config.env' });
 
+// Use morgan middleware to log all requests.
+const morgan = require('morgan');
+server.use(morgan('dev'));
+
 // Use bodyparser to handle json requests.
 const bodyParser = require('body-parser');
 server.use(bodyParser.json());

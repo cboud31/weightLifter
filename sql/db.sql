@@ -1,5 +1,5 @@
 CREATE TABLE users(
-    id SERIAL PRIMARY KEY,
+    "userID" uuid DEFAULT uuid_generate_v4 () UNIQUE,
     "firstName" VARCHAR(255) NOT NULL,
     "lastName" VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
@@ -7,21 +7,23 @@ CREATE TABLE users(
     password VARCHAR(255) NOT NULL,
     "registerDate" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     "imageURL" VARCHAR(255) DEFAULT NULL,
-    "isAdmin" BOOLEAN NOT NULL DEFAULT false,
+    "isAdmin" BOOLEAN NOT NULL DEFAULT false
 )
 
 CREATE TABLE routines(
-    id SERIAL PRIMARY KEY,
+    "routineID" SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
-    -- creator ID references user ID
+    author VARCHAR(255) REFERENCES users(username),
+    author_id uuid REFERENCES users("userID")
     -- sets & reps? Might need a new table for this
 )
 
 CREATE TABLE exercises(
-    id SERIAL PRIMARY KEY,
+    "exerciseID" SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     "videoURL" VARCHAR(255) DEFAULT NULL,
-    -- creator ID references user ID
+    author VARCHAR(255) REFERENCES users(username),
+    author_id uuid REFERENCES users("userID")
 )
