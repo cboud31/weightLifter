@@ -1,5 +1,5 @@
 const exercisesRouter = require('express').Router();
-const { createExercise } = require('../db/exercises');
+const { createExercise } = require('../db/index');
 
 //@route    GET /api/exercises/
 //@descr    Get all routines in the database.
@@ -35,9 +35,14 @@ exercisesRouter.get('/:userID', async (req, res, next) => {
 //@descr    Create a new exercise.
 //@access   Private
 exercisesRouter.post('/', async (req, res, next) => {
+  const { title, description, videoURL } = req.body;
+
+  const exercise = await createExercise({ title, description, videoURL });
+
   res.send({
     success: 'true',
-    message: 'This route gets all exercises from the database.',
+    message: 'New exercise created.',
+    exercise: exercise,
   });
 });
 
