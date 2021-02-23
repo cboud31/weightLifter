@@ -4,9 +4,37 @@ const client = new pg.Client('postgres://localhost:5432/weightLifter');
 
 // client.connect();
 
+async function getAllExercises() {
+  try {
+    const { rows } = await client.query(`
+    SELECT * FROM exercises;
+    `);
+
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function getExerciseByID(exerciseID) {
+  try {
+    const {
+      rows: [result],
+    } = await client.query(`
+    SELECT * FROM exercises
+    WHERE "exerciseID" = ${exerciseID}
+    `);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}
+
 async function createExercise({ title, description, videoURL }) {
   try {
-    const result = await client.query(
+    const {
+      rows: [exercise],
+    } = await client.query(
       `
       INSERT INTO exercises(title, description, "videoURL")
       VALUES($1, $2, $3)
@@ -14,7 +42,8 @@ async function createExercise({ title, description, videoURL }) {
       `,
       [title, description, videoURL]
     );
-    return result;
+
+    return exercise;
   } catch (error) {
     throw error;
   }
@@ -22,5 +51,7 @@ async function createExercise({ title, description, videoURL }) {
 
 module.exports = {
   client,
+  getAllExercises,
+  getExerciseByID,
   createExercise,
 };

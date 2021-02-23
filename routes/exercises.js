@@ -1,24 +1,38 @@
 const exercisesRouter = require('express').Router();
-const { createExercise } = require('../db/index');
+const {
+  getAllExercises,
+  getExerciseByID,
+  createExercise,
+} = require('../db/index');
 
 //@route    GET /api/exercises/
 //@descr    Get all routines in the database.
 //@access   Public
 exercisesRouter.get('/', async (req, res, next) => {
-  res.send({
-    success: 'true',
-    message: 'This route gets all exercises from the database.',
-  });
+  try {
+    const exercises = await getAllExercises();
+    res.send({
+      count: exercises.length,
+      exercises,
+    });
+  } catch (error) {
+    next(error);
+  }
 });
 
 //@route    GET /api/exercises/:exerciseID
 //@descr    Get an individual exercise.
 //@access   Public
 exercisesRouter.get('/:exerciseID', async (req, res, next) => {
-  res.send({
-    success: 'true',
-    message: `This route gets an exercise with ID of ${req.params.exerciseID}.`,
-  });
+  try {
+    const { exerciseID } = req.params;
+
+    const exercise = await getExerciseByID(exerciseID);
+
+    res.send(exercise);
+  } catch (error) {
+    next(error);
+  }
 });
 
 //@route    GET /api/exercises/:userID
@@ -35,15 +49,27 @@ exercisesRouter.get('/:userID', async (req, res, next) => {
 //@descr    Create a new exercise.
 //@access   Private
 exercisesRouter.post('/', async (req, res, next) => {
-  const { title, description, videoURL } = req.body;
+  try {
+    const { title, description, videoURL } = req.body;
 
-  const exercise = await createExercise({ title, description, videoURL });
+    const { exerciseID, author } = await createExercise({
+      title,
+      description,
+      videoURL,
+    });
 
-  res.send({
-    success: 'true',
-    message: 'New exercise created.',
-    exercise: exercise,
-  });
+    res.send({
+      success: true,
+      message: 'New activity created',
+      exerciseID,
+      title,
+      description,
+      author,
+      videoURL,
+    });
+  } catch (error) {
+    next(error);
+  }
 });
 
 //@route    PATCH /api/exercises/:exerciseID
