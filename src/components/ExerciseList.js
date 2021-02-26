@@ -17,16 +17,20 @@ const testData = [
   },
 ];
 
-const ExerciseList = () => {
+const ExerciseList = ({ exerciseList }) => {
   return (
     <div className="ExerciseList">
-      {testData.map((exercise) => {
+      {exerciseList.map((exercise, idx) => {
+        console.log(exercise);
         return (
-          <Exercise
-            title={exercise.title}
-            description={exercise.description}
-            videoURL={exercise.videoURL}
-          />
+          <div key={idx}>
+            <Exercise
+              key={exercise.exerciseID}
+              title={exercise.title}
+              description={exercise.description}
+              videoURL={exercise.videoURL}
+            />
+          </div>
         );
       })}
     </div>

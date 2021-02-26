@@ -8,7 +8,9 @@
     "server:dev": "nodemon server.js",
     "db:build": "node ./db/init_db.js",
     "client:dev": "react-scripts start",
-    "start:dev": "npm run server:dev & npm run client:dev"
+    "start:dev": "npm run server:dev & npm run client:dev",
+    "dev-client": "react-scripts start",
+    "dev-server": "nodemon server.js"
   },
   "keywords": [],
   "author": "",

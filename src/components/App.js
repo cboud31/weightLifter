@@ -17,6 +17,8 @@ const App = () => {
   const startup = async () => {
     try {
       const data = await getExercises();
+      const { exercises } = data;
+      setExerciseList(exercises);
 
       console.log(data);
     } catch (error) {
@@ -37,7 +39,7 @@ const App = () => {
             <h1>Hello World!!</h1>
           </Route>
           <Route exact path="/exercises">
-            <ExerciseList />
+            <ExerciseList exerciseList={exerciseList} />
           </Route>
           <Route exact path="/routines">
             <RoutineList />

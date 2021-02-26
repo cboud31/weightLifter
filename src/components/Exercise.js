@@ -48,9 +48,7 @@ const Exercise = (props) => {
         <AccordionDetails>
           <Typography>{description}</Typography>
           <div>
-            <p>
-              <ReactPlayer url={videoURL} />
-            </p>
+            <ReactPlayer url={videoURL} />
           </div>
         </AccordionDetails>
       </Accordion>
