@@ -6,6 +6,10 @@ const server = express();
 const dotenv = require('dotenv');
 dotenv.config({ path: './config/config.env' });
 
+// CORS
+const cors = require('cors');
+server.use(cors());
+
 // Use morgan middleware to log all requests.
 const morgan = require('morgan');
 server.use(morgan('dev'));
