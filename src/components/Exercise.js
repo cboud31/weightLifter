@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactPlayer from 'react-player';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -19,10 +21,17 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
   },
+  accordion: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignContent: 'center',
+  },
 }));
 
-const Exercise = () => {
+const Exercise = (props) => {
   const classes = useStyles();
+
+  const { title, description, videoURL } = props;
 
   return (
     <div className={classes.root}>
@@ -32,13 +41,17 @@ const Exercise = () => {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>Accordion 1</Typography>
+          <Typography className={classes.heading}>
+            <b>{title}</b>
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
+          <Typography>{description}</Typography>
+          <div>
+            <p>
+              <ReactPlayer url={videoURL} />
+            </p>
+          </div>
         </AccordionDetails>
       </Accordion>
     </div>
