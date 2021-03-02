@@ -7,7 +7,13 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-import { NavBar, Footer, ExerciseList, RoutineList } from '../components';
+import {
+  NavBar,
+  Footer,
+  DrawerMenu,
+  ExerciseList,
+  RoutineList,
+} from '../components';
 
 import { getExercises } from '../api';
 
