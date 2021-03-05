@@ -4,6 +4,7 @@ const client = new pg.Client('postgres://localhost:5432/weightLifter');
 
 // client.connect();
 
+// DB Methods : Exercises
 async function getAllExercises() {
   try {
     const { rows } = await client.query(`
@@ -48,6 +49,8 @@ async function createExercise({ title, description, videoURL }) {
     throw error;
   }
 }
+
+// DB Methods : Users
 
 module.exports = {
   client,

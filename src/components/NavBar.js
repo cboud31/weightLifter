@@ -40,7 +40,7 @@ export default function NavBar() {
             <DrawerMenu />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Weight Lifter
+            Kettlebell Krewe
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>
