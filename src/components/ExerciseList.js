@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from 'react';
 
 import Exercise from './Exercise';
+import SearchBar from './SearchBar';
 
-const testData = [
-  {
-    title: 'Kettlebell Swing, One-Handed',
-    description:
-      'With feet slightly wider than shoulder width, bend knees slightly and thrust hips back to hold the kettlebell. Engage lats and abs while hiking the kettlebell between your legs. Drive your hips forward explosively to swing the kettlebell to shoulder height.',
-    videoURL: 'https://www.youtube.com/watch?v=0L0cOOpyPpA&t=1s',
-  },
-  {
-    title: 'Kettlebell Swing, Two-Handed',
-    description:
-      'With feet slightly wider than shoulder width, bend knees slightly and thrust hips back to hold the kettlebell. Engage lats and abs while hiking the kettlebell between your legs. Drive your hips forward explosively to swing the kettlebell to shoulder height.',
-    videoURL: 'https://www.youtube.com/watch?v=yHxcTn1UeAc&t=2s',
-  },
-];
+const styling = {};
 
-const ExerciseList = ({ exerciseList }) => {
+const ExerciseList = ({ exerciseList, searchTerm, setSearchTerm }) => {
+  // const filteredExercises = () => {
+  //   return exerciseList.filter((exercise) => {
+  //     return exercise.title.toLowerCase().includes(searchTerm.toLowerCase());
+  //   });
+  // };
+  // const filteredExList = filteredExercises();
+
   return (
     <div className="ExerciseList">
+      <SearchBar
+        label="Search All Exercises"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
       {exerciseList.map((exercise, idx) => {
         console.log(exercise);
         return (

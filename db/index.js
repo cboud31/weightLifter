@@ -8,7 +8,8 @@ const client = new pg.Client('postgres://localhost:5432/weightLifter');
 async function getAllExercises() {
   try {
     const { rows } = await client.query(`
-    SELECT * FROM exercises;
+    SELECT * FROM exercises
+    ORDER BY title;
     `);
 
     return rows;

@@ -1,7 +1,14 @@
 import React from 'react';
 
+// import Routine from './Routine';
+import SearchBar from './SearchBar';
+
 const RoutineList = () => {
-  return <h1>Routines will go here!</h1>;
+  return (
+    <div className="RoutineList">
+      <SearchBar />
+    </div>
+  );
 };
 
 export default RoutineList;

@@ -6,6 +6,8 @@ import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 
 import GitHubIcon from '@material-ui/icons/GitHub';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import { GitHub } from '@material-ui/icons';
 
 function Copyright() {
   return (
@@ -39,6 +41,9 @@ const useStyles = makeStyles((theme) => ({
     //     ? theme.palette.grey[200]
     //     : theme.palette.grey[800],
   },
+  icon: {
+    color: 'white',
+  },
 }));
 
 export default function StickyFooter() {
@@ -50,6 +55,12 @@ export default function StickyFooter() {
       <footer className={classes.footer}>
         <Container maxWidth="sm">
           <Typography variant="body1">
+            <Link className={classes.icon} href="#">
+              <GitHubIcon />
+            </Link>
+            <Link className={classes.icon} href="#">
+              <LinkedInIcon />
+            </Link>
             My sticky footer can be found here.
           </Typography>
           <Copyright />

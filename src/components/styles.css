@@ -2,4 +2,5 @@
   display: grid;
   height: 100vh;
   grid-template-rows: auto 1fr auto;
+  background-image: 'https://images.app.goo.gl/R51xgf1jn6G32X2b7';
 }

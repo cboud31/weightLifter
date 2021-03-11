@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './styles.css';
 
 import {
   BrowserRouter as Router,
@@ -19,6 +20,7 @@ import { getExercises } from '../api';
 
 const App = () => {
   const [exerciseList, setExerciseList] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const startup = async () => {
     try {
@@ -32,6 +34,14 @@ const App = () => {
     }
   };
 
+  const filteredExercises = () => {
+    return exerciseList.filter((x) => {
+      return x.title.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+  };
+
+  // return exercise.title.toLowerCase().includes(searchTerm.toLowerCase());
+
   useEffect(() => {
     startup();
   }, []);
@@ -42,10 +52,14 @@ const App = () => {
         <NavBar />
         <Switch>
           <Route exact path="/">
-            <h1>Hello World!!</h1>
+            <h1>Hello World</h1>
           </Route>
           <Route exact path="/exercises">
-            <ExerciseList exerciseList={exerciseList} />
+            <ExerciseList
+              exerciseList={filteredExercises()}
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+            />
           </Route>
           <Route exact path="/routines">
             <RoutineList />

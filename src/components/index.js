@@ -5,3 +5,4 @@ export { default as Exercise } from './Exercise';
 export { default as ExerciseList } from './ExerciseList';
 export { default as RoutineList } from './RoutineList';
 export { default as DrawerMenu } from './DrawerMenu';
+export { default as Main } from './Main';
